@@ -2,6 +2,7 @@ package dao;
 
 import java.util.Collection;
 
+
 import com.project.coupon.entities.Company;
 
 
@@ -13,7 +14,6 @@ public interface CompanyDAO {
 	
 	Company getCompanyId(Long id);
 	Collection<Company> getAllCompanies();
-	
-	
-
+	Collection<Company> getCoupons();	
+	boolean login(String compName, String password);
 }

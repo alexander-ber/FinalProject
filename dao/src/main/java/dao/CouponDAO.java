@@ -1,8 +1,15 @@
 package dao;
 
+import java.util.Collection;
+
 import com.project.coupon.entities.Coupon;
 
 public interface CouponDAO {
-	void createCoupon(Coupon c);
+	void removeCoupon(Coupon coupon);
+	void updateCoupon(Coupon coupon);
+	Coupon getCoupon(int id);
+	
+	Collection<Coupon> getAllCoupons();
+	Collection<Coupon>getCouponByType(String couponType);
 
 }

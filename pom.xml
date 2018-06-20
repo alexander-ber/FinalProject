@@ -7,15 +7,17 @@
 	<groupId>com.project</groupId>
 	<artifactId>coupon</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	
 	<modules>
 		<module>entities</module>
 		<module>application</module>
 		<module>dao</module>
 	</modules>
+	
 	<packaging>pom</packaging>
 
 	<name>coupon</name>
-	<description>Coupon system</description>
+	<description>Coupon system!</description>
 
 
 	<properties>
