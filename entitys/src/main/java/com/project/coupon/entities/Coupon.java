@@ -2,8 +2,10 @@ package com.project.coupon.entities;
 
 import java.util.Date;
 
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -11,7 +13,7 @@ import javax.persistence.Table;
 @Table(name = "coupon")
 public class Coupon {
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String title;
 	private Date startDate;
@@ -20,8 +22,17 @@ public class Coupon {
 	private String message; 
 	private Double price;
 	private String image;
+	
+	@Convert(converter=CouponTypeConverter.class)
 	private CouponType type;
 	
+	
+	public Coupon() {
+		super();
+	}
+
+
+
 	public Coupon(String title, Date startDate, Date endDate, Integer amount, String message, Double price,
 			String image) {
 		super();

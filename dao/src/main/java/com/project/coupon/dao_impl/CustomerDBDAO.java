@@ -1,12 +1,11 @@
-package dao_impl;
+package com.project.coupon.dao_impl;
 
 import java.util.Collection;
 
+import com.project.coupon.dao.CustomerDAO;
 import com.project.coupon.entities.Company;
 import com.project.coupon.entities.Coupon;
 import com.project.coupon.entities.Customer;
-
-import dao.CustomerDAO;
 
 public class CustomerDBDAO implements CustomerDAO {
 

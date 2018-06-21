@@ -1,4 +1,4 @@
-package dao;
+package com.project.coupon.dao;
 
 import java.util.Collection;
 

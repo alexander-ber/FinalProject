@@ -1,23 +1,46 @@
 package com.project.coupon.entities;
 
-import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+
+
+
 
 @Entity
 @Table(name = "customer")
 public class Customer {
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String custName;
 	private String password;
-	private ArrayList<Coupon> coupons; 
+
 	
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "CUSTOMER_COUPON",
+            joinColumns = @JoinColumn(name = "CUSTOMER_ID"), // this class
+            inverseJoinColumns = @JoinColumn(name = "COUPON_ID") // the other class
+    )
+    private Set<Coupon> coupons = new HashSet<Coupon>();
 	
+    
+	
+	public Customer() {
+		super();
+	}
+
+
+
 	public Customer(String custName, String password) {
 		super();
 		this.custName = custName;
@@ -26,16 +49,13 @@ public class Customer {
 	
 	
 
-	public ArrayList<Coupon> getCoupons() {
-		return coupons;
-	}
+	public Set<Coupon> getCoupons() {
+        return coupons;
+    }
 
-
-
-	public void setCoupons(ArrayList<Coupon> coupons) {
-		this.coupons = coupons;
-	}
-
+    public void setCoupons(Set<Coupon> coupons) {
+        this.coupons = coupons;
+    }
 
 
 	public Long getId() {

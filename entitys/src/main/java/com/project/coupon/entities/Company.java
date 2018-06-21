@@ -1,22 +1,41 @@
 package com.project.coupon.entities;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "company")
 public class Company {
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+
 	private String compName;
 	private String password;
 	private String email;
-	private ArrayList<Coupon> coupons; 
+	
+	
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "company_coupon",
+            joinColumns = @JoinColumn(name = "comp_id"), // this class
+            inverseJoinColumns = @JoinColumn(name = "coupon_id") // the other class
+    )
+    
+	private List<Coupon> coupons; 
+    
+	public Company() {
+		super();
+	}
 
 	public Company(String compName, String password, String email) {
 		super();
@@ -25,7 +44,7 @@ public class Company {
 		this.email = email;
 	}
 	
-	public ArrayList<Coupon> getCoupons() {
+	public List<Coupon> getCoupons() {
 		return coupons;
 	}
 

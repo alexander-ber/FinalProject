@@ -1,15 +1,18 @@
-package dao_impl;
+package com.project.coupon.dao_impl;
 
 import java.util.Collection;
 
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
+
+import com.project.coupon.dao.CompanyDAO;
 import com.project.coupon.entities.Company;
 
-import dao.CompanyDAO;
+public class CompanyDBDAO  {
 
-public class CompanyDBDAO implements CompanyDAO{
 
 	public void createCompany(Company c) {
-		// TODO Auto-generated method stub
+
 		
 	}
 

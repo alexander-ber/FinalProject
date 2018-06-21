@@ -1,10 +1,9 @@
-package dao_impl;
+package com.project.coupon.dao_impl;
 
 import java.util.Collection;
 
+import com.project.coupon.dao.CouponDAO;
 import com.project.coupon.entities.Coupon;
-
-import dao.CouponDAO;
 
 public class CouponDBDAO implements CouponDAO{
 
