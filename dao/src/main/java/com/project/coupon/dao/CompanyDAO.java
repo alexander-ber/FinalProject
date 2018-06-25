@@ -15,8 +15,11 @@ public interface CompanyDAO extends JpaRepository<Company, Long> {
 	default void createCompany(Company c) {
 		this.save(c);
 	}
- /*
-	void removeCompany(Company c);
+
+	default void removeCompany(Long id) {
+		this.deleteById(id);
+	}
+/*
 	void updateCompany(Company c);
 */	
 	@Query("select c from Company c")

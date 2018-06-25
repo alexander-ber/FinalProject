@@ -3,6 +3,7 @@ package com.project.coupon.entities;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -22,8 +23,8 @@ public class Customer {
 	private String custName;
 	private String password;
 
-	
-    @ManyToMany(fetch = FetchType.EAGER)
+	//CascadeType.ALL - 
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "CUSTOMER_COUPON",
             joinColumns = @JoinColumn(name = "CUSTOMER_ID"), // this class
             inverseJoinColumns = @JoinColumn(name = "COUPON_ID") // the other class

@@ -1,14 +1,19 @@
 package com.project.coupon.entities;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -28,6 +33,13 @@ public class Coupon {
 	//@Convert(converter=CouponTypeConverter.class)
 	@Enumerated(EnumType.STRING)
 	private CouponType type;
+	
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinTable(name = "company_coupon",
+            joinColumns = @JoinColumn(name = "coupon_id"), // this class
+            inverseJoinColumns = @JoinColumn(name = "comp_id") // the other class
+    )
+    private Company company; 
 	
 	
 	public Coupon() {
