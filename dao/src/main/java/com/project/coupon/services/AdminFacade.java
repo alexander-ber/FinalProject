@@ -42,6 +42,17 @@ public class AdminFacade implements CouponClientFacade{
 		}	
 	}
 	
+	public void deleteCompany(Long companyId) {		
+		try {
+			cDAO.deleteById(companyId);
+		} catch(Exception e) {
+			System.out.println("SQL exception: " + e.getMessage());
+		}	
+	}
+	
+	
+	
+	
 	
 
 	

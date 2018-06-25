@@ -5,6 +5,7 @@ import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,7 +15,7 @@ import com.project.coupon.services.AdminFacade;
 
 
 @RestController
-public class CouponsController {
+public class CompanyController {
     @Autowired
 	private AdminFacade AdminFacadeDAO;	
 
@@ -24,8 +25,13 @@ public class CouponsController {
         return AdminFacadeDAO.getAllCompanies();
     }
     
+    @PostMapping("/admin/delete-company/{companyId}")
+    public void deleteCompany(@PathVariable("companyId") Long companyId) {
+        AdminFacadeDAO.deleteCompany(companyId);
+    }
+    
     @PostMapping("/admin/add-company")
-    public void generateCoupons(@RequestBody Company c) {
+    public void createCompany(@RequestBody Company c) {
          AdminFacadeDAO.createCompany(c);
     }
     
