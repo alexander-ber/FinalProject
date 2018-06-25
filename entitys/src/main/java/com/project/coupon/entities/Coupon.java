@@ -1,9 +1,11 @@
 package com.project.coupon.entities;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 import javax.persistence.Convert;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -16,14 +18,15 @@ public class Coupon {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String title;
-	private Date startDate;
-	private Date endDate;
+	private LocalDate startDate;
+	private LocalDate endDate;
 	private Integer amount;
 	private String message; 
 	private Double price;
 	private String image;
 	
-	@Convert(converter=CouponTypeConverter.class)
+	//@Convert(converter=CouponTypeConverter.class)
+	@Enumerated(EnumType.STRING)
 	private CouponType type;
 	
 	
@@ -33,7 +36,7 @@ public class Coupon {
 
 
 
-	public Coupon(String title, Date startDate, Date endDate, Integer amount, String message, Double price,
+	public Coupon(String title, LocalDate startDate, LocalDate endDate, Integer amount, String message, Double price,
 			String image) {
 		super();
 		this.title = title;
@@ -57,16 +60,16 @@ public class Coupon {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public Date getStartDate() {
+	public LocalDate getStartDate() {
 		return startDate;
 	}
-	public void setStartDate(Date startDate) {
+	public void setStartDate(LocalDate startDate) {
 		this.startDate = startDate;
 	}
-	public Date getEndDate() {
+	public LocalDate getEndDate() {
 		return endDate;
 	}
-	public void setEndDate(Date endDate) {
+	public void setEndDate(LocalDate endDate) {
 		this.endDate = endDate;
 	}
 	public Integer getAmount() {

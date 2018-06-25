@@ -30,8 +30,16 @@ public class AdminFacade implements CouponClientFacade{
 		} catch(Exception e) {
 			System.out.println("SQL exception: " + e.getMessage());
 		}
-		return null;
+		return null;		
+	}
+	
+	public void createCompany(Company c){
 		
+		try {
+			cDAO.createCompany(c);
+		} catch(Exception e) {
+			System.out.println("SQL exception: " + e.getMessage());
+		}	
 	}
 	
 	

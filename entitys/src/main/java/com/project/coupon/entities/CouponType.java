@@ -12,7 +12,7 @@ public enum CouponType {
 	private final String code;
 	
 	
-	CouponType(String code){
+	CouponType(String code) {
 		this.code = code;
 	}
 	

@@ -13,9 +13,6 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-
-
-
 @Entity
 @Table(name = "customer")
 public class Customer {
@@ -74,9 +71,4 @@ public class Customer {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
-	
-	
-	
-
 }

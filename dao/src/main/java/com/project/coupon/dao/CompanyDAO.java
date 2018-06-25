@@ -11,7 +11,11 @@ import com.project.coupon.entities.Company;
 
 public interface CompanyDAO extends JpaRepository<Company, Long> {
 	
-/*	void createCompany(Company c);
+	
+	default void createCompany(Company c) {
+		this.save(c);
+	}
+ /*
 	void removeCompany(Company c);
 	void updateCompany(Company c);
 */	
