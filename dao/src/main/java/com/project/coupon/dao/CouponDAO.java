@@ -7,7 +7,7 @@ import com.project.coupon.entities.Coupon;
 public interface CouponDAO {
 	void removeCoupon(Coupon coupon);
 	void updateCoupon(Coupon coupon);
-	Coupon getCoupon(int id);
+	Coupon getCoupon(Long id);
 	
 	Collection<Coupon> getAllCoupons();
 	Collection<Coupon>getCouponByType(String couponType);

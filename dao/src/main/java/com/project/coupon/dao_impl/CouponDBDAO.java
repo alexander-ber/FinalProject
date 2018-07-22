@@ -32,4 +32,10 @@ public class CouponDBDAO implements CouponDAO{
 		return null;
 	}
 
+	@Override
+	public Coupon getCoupon(Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
