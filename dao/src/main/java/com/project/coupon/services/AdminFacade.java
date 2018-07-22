@@ -12,7 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.project.coupon.dao.CompanyDAO;
+import com.project.coupon.dao.CouponDAO;
 import com.project.coupon.entities.Company;
+import com.project.coupon.entities.Coupon;
 
 @Service
 public class AdminFacade implements CouponClientFacade{
@@ -29,6 +31,9 @@ public class AdminFacade implements CouponClientFacade{
 	
 	@Autowired
 	private CompanyDAO cDAO;	
+
+	@Autowired
+	private CouponDAO couponDAO;	
 
 	public void createCompany(Company c) {
 		
@@ -81,6 +86,16 @@ public class AdminFacade implements CouponClientFacade{
 			System.out.println("SQL exception: " + e.getMessage());
 		}
 		return null;		
+	}
+	
+
+	public ArrayList<Coupon> getAllCoupons() {
+		try {
+			return (ArrayList<Coupon>) couponDAO.getAllCoupons();
+		} catch(Exception e) {
+			System.out.println("SQL exception: " + e.getMessage());
+		}
+		return null;
 	}
 	
 
