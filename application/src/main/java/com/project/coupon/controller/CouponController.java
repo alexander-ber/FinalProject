@@ -20,13 +20,8 @@ public class CouponController {
     
     @GetMapping("/admin/get-all-coupons")
     public List<Coupon> getAllCoupons() {
-    	
-		LOGGER.debug("This is a debug message");
-		LOGGER.info("This is an info message");
-		LOGGER.warn("This is a warn message");
-		LOGGER.error("This is an error message");
-    	 
-    	       
     	return AdminFacadeDAO.getAllCoupons();
     }
+
+    
 }

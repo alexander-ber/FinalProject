@@ -13,53 +13,74 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.project.coupon.entities.Company;
+import com.project.coupon.entities.Coupon;
 import com.project.coupon.services.AdminFacade;
+import com.project.coupon.services.CompanyFacade;
 
 
 @RestController
 public class CompanyController {
 	
 	private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
-	
+		
     @Autowired
-	private AdminFacade AdminFacadeDAO;	
+	private AdminFacade adminFacade;
+    
+    @Autowired
+	private CompanyFacade companyFacade;
     
     @GetMapping("/error")
     public List<Company> error() {
-        return AdminFacadeDAO.getAllCompanies();
+        return adminFacade.getAllCompanies();
     }
     
     @GetMapping("/admin/get-all-companies")
-    public List<Company> getAllCompanies() {
-    	
-		LOGGER.debug("This is a debug message");
-		LOGGER.info("This is an info message");
-		LOGGER.warn("This is a warn message");
-		LOGGER.error("This is an error message");
-    	 
-    	       
-    	return AdminFacadeDAO.getAllCompanies();
+    public List<Company> getAllCompanies() {       
+    	return adminFacade.getAllCompanies();
     }
     
     @GetMapping("/admin/delete-company/{companyId}")
     public void deleteCompany(@PathVariable("companyId") Long companyId) {
-        AdminFacadeDAO.removeCompany(companyId);
+    	adminFacade.removeCompany(companyId);
     }
     
     @GetMapping("/admin/get-company-by-id/{companyId}")
     public Company getCompanyById(@PathVariable("companyId") Long companyId) {
     	System.out.println("Controller companyId = " + companyId);
-    	return AdminFacadeDAO.getCompanyById(companyId);
+    	return adminFacade.getCompanyById(companyId);
     }
     
     @PostMapping("/admin/add-company")
     public void createCompany(@RequestBody Company c) {
-         AdminFacadeDAO.createCompany(c);
+    	adminFacade.createCompany(c);
     }
+    
+    @GetMapping("/login/{user}/{password}/{client_type}")
+    public void login(@PathVariable("user") String userName, 
+    		@PathVariable("password") String password,
+    		@PathVariable("client_type") String clientType) {
+    	if(clientType.equals("admin")) {
+    		adminFacade.login(userName,password,clientType);
+    	} else if (clientType.equals("company")) {
+    		companyFacade.login(userName,password,clientType);
+    	}
+    }
+    
+    
 
     @PostMapping("/admin/update-company")
     public Company updateCompany(@RequestBody Company c) {
-    	return AdminFacadeDAO.updateCompany(c);
+    	return adminFacade.updateCompany(c);
     }
     
+    //------------------------
+    @GetMapping("/delete-coupon/{couponId}")
+    public void deleteCoupon(@PathVariable("couponId") Long couponId) {
+    	companyFacade.removeCoupon(couponId);
+    }
+    
+    @PostMapping("/add-coupon")
+    public void createCoupon(@RequestBody Coupon c) {
+    	companyFacade.createCoupon(c);
+    }
 }
