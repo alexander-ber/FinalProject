@@ -33,7 +33,7 @@ public class Company {
 	private String email;
 	
 	
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(name = "company_coupon",
             joinColumns = @JoinColumn(name = "comp_id"), // this class
             inverseJoinColumns = @JoinColumn(name = "coupon_id") // the other class

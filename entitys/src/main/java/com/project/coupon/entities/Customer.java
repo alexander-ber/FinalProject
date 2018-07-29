@@ -13,9 +13,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
-@Table(name = "customer")
+@Table(name = "customer", uniqueConstraints = {@UniqueConstraint(columnNames = {"custName"})})
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Customer {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,10 +28,12 @@ public class Customer {
 	private String password;
 
 	//CascadeType.ALL - 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinTable(name = "CUSTOMER_COUPON",
-            joinColumns = @JoinColumn(name = "CUSTOMER_ID"), // this class
-            inverseJoinColumns = @JoinColumn(name = "COUPON_ID") // the other class
+	
+	//, orphanRemoval = true
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(name = "customer_coupon",
+            joinColumns = @JoinColumn(name = "customer_id"), // this class
+            inverseJoinColumns = @JoinColumn(name = "coupon_id") // the other class
     )
     private Set<Coupon> coupons = new HashSet<Coupon>();
 	
